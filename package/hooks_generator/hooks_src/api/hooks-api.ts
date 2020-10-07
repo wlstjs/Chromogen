@@ -1,5 +1,3 @@
-import { Transaction } from './../../../recoil_generator/src/types';
-
 /* eslint-disable */
 //import useState and useReducer from React
 //export useState and useReducer as chromogen components
@@ -12,17 +10,16 @@ import { Transaction } from './../../../recoil_generator/src/types';
 
 */
 //Used to grab useState from the React APi
-import React, { useReducer, useState as reactUseState }  from 'react';
+import { useState as reactUseState }  from 'react';
 
 //A function that takes in useState params and pushes them to our ledger, then returns 
-import { trackStateReducer } from './hooks-core-utils';
+//import { trackStateReducer } from './hooks-core-utils';
 
 //A parameter to test our useState hook
-import { dummyParam } from '../utils/hooks-utils';
+//import { dummyParam } from '../utils/hooks-utils';
 
 //We need ledger to store information the developer passes into useState and setState
 import { hooksLedger } from '../utils/hooks-ledger';
-import { Dispatch,BasicStateAction } from '../hooks-types';
 
 
 //function that user imports
@@ -42,14 +39,15 @@ import { Dispatch,BasicStateAction } from '../hooks-types';
 
 // }
 
+// function useState<S>(initialState: S | (() => S)): [S, Dispatch<SetStateAction<S>>];
 
-export const useState = (initState: any ) => {
+export function useState<S>(initState: S | (() => S)) {
   //bring in the state property from our ledger, which is of type array
-  const { transactions } = hooksLedger;
+  const { initialState, currState } = hooksLedger;
 
   //push our the users intial state into our ledger
-  transactions.initialState.push(initState)
-  transactions.currState.push(initState)
+  initialState.push(initState)
+  currState.push(initState)
 
   // Actual React useState function
   const tracker = reactUseState(initState)

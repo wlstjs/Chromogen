@@ -19,7 +19,11 @@ import {
 //writeableHook = cb of useState
 //readableHook = state of useState
 
+<<<<<<< HEAD
 export const output = ({
+=======
+export const hooksOutput = ({
+>>>>>>> master
   initialState,
   //   prevState,
   //   currState,
@@ -42,7 +46,7 @@ describe('Initial Render', () => {
     const { result } = renderHook(() => ledgerSetStateCallback());
 });
 
-describe('USESTATE', () => {});
+// describe('USESTATE', () => {});
 
 describe('USESTATE CALLBACKS', () => {
   ${testHooksSetState(setStateCallback)}
