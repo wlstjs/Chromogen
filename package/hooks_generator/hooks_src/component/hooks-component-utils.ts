@@ -55,14 +55,12 @@ const hooksDivStyle: CSSProperties = {
 
 export const hookStyles = { hooksButtonStyle, hooksDivStyle };
 
-
 // Export generateFile as a function (which takes in a setFile function and storeMap) that deconstructs state/transactions and sets to the ledger*, along with a finalLedger that will check whether the mapped store size > 0, if truthy, return a new ledger with both state and transaction arrays containing the user input ("key"). Else, return ledger*.
-  // generateFile will return setHooksFile passing in the URL Blob as an argument (downloadable file)
-  // generateFile is used as an onClick function inside hooks ChromogenObserver = meaning that this function is only invoked once download file hass started for user. This keeps performance cost low, since it never interacts with the main application.
+// generateFile will return setHooksFile passing in the URL Blob as an argument (downloadable file)
+// generateFile is used as an onClick function inside hooks ChromogenObserver = meaning that this function is only invoked once download file hass started for user. This keeps performance cost low, since it never interacts with the main application.
 
 export const generateHooksFile = (setHooksFile: Function): void => {
   // const { transaction } = ledger;
 
-
   return setHooksFile(URL.createObjectURL(new Blob([output(ledger)])));
-}
+};

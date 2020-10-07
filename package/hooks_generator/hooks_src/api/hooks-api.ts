@@ -10,9 +10,9 @@
 
 */
 //Used to grab useState from the React APi
-import { useState as reactUseState }  from 'react';
+import { useState as reactUseState } from 'react';
 
-//A function that takes in useState params and pushes them to our ledger, then returns 
+//A function that takes in useState params and pushes them to our ledger, then returns
 //import { trackStateReducer } from './hooks-core-utils';
 
 //A parameter to test our useState hook
@@ -20,7 +20,6 @@ import { useState as reactUseState }  from 'react';
 
 //We need ledger to store information the developer passes into useState and setState
 import { hooksLedger } from '../utils/hooks-ledger';
-
 
 //function that user imports
 // export function useState<S>(initialState: (() => S) | S,):[S,Dispatch<BasicStateAction<S>>]{
@@ -33,9 +32,6 @@ import { hooksLedger } from '../utils/hooks-ledger';
 //   //return out a useReducer function
 //   // from react and pass in our trackStateReducer
 //   return useReducer(trackStateReducer,(initialState))
- 
-
-
 
 // }
 
@@ -46,15 +42,11 @@ export function useState<S>(initState: S | (() => S)) {
   const { initialState, currState } = hooksLedger;
 
   //push our the users intial state into our ledger
-  initialState.push(initState)
-  currState.push(initState)
+  initialState.push(initState);
+  currState.push(initState);
 
   // Actual React useState function
-  const tracker = reactUseState(initState)
+  const tracker = reactUseState(initState);
 
   return tracker; // [ state, setState]
- 
-
-
-
 }

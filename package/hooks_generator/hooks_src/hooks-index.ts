@@ -10,7 +10,4 @@ import { useState } from './api/hooks-api';
 // Does name matter when user imports into app?
 import { hooksChromogenObserver } from './component/HooksChromogenObserver';
 
-export {
-    useState,
-    hooksChromogenObserver
-}
+export { useState, hooksChromogenObserver };
