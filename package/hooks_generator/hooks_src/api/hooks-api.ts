@@ -12,15 +12,14 @@
 //Used to grab useState from the React APi
 // import { useState as reactUseState }  from 'react';
 
-//A function that takes in useState params and pushes them to our ledger, then returns 
+//A function that takes in useState params and pushes them to our ledger, then returns
 //import { trackStateReducer } from './hooks-core-utils';
 
 //A parameter to test our useState hook
 //import { dummyParam } from '../utils/hooks-utils';
 
 //We need ledger to store information the developer passes into useState and setState
-import { hooksLedger } from '../utils/hooks-ledger';
-
+import { hooksLedger as ledger } from '../utils/hooks-ledger';
 
 //function that user imports
 // export function useState<S>(initialState: (() => S) | S,):[S,Dispatch<BasicStateAction<S>>]{
@@ -33,9 +32,6 @@ import { hooksLedger } from '../utils/hooks-ledger';
 //   //return out a useReducer function
 //   // from react and pass in our trackStateReducer
 //   return useReducer(trackStateReducer,(initialState))
- 
-
-
 
 // }
 
@@ -43,27 +39,26 @@ import { hooksLedger } from '../utils/hooks-ledger';
 
 export function useState<S>(initState: S | (() => S)) {
   //bring in the state property from our ledger, which is of type array
-  const { initialState, currState, setStateCallback } = hooksLedger;
+  const { currState, setStateCallback } = ledger;
 
   // const [state, setState] = reactUseState(initState)
 
   //push our the users intial state into our ledger
-  initialState.push(initState)
+  ledger.initialState = initState;
   // currState.push(state)
   // setStateCallback.push(setState)
 
   // Actual React useState function
 
-//HooksChromogenObserver needs to update ledger before return
-setTimeout (() => {
-  console.log('wait for updated ledger');
-  
-  // Return currState, callback SHOULD BE LAST
-  return [currState, setStateCallback];
-}, 1000)
-  
- 
-return initialState;
+  //HooksChromogenObserver needs to update ledger before return
+  setTimeout(() => {
+    console.log('wait for updated ledger');
 
+    // Return currState, callback SHOULD BE LAST
+    return [currState, setStateCallback];
+  }, 1000);
 
+  console.log(`ledger.initialState api`, ledger.initialState);
+
+  return ledger.initialState;
 }
